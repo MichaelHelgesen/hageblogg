@@ -1,0 +1,1192 @@
+[
+  {
+    "of": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "description": "Viktig for universell utforming og SEO",
+            "name": "alt",
+            "type": "string",
+            "title": "Alternativ tekst"
+          },
+          {
+            "description": "Valgfritt – vises under bildet",
+            "name": "caption",
+            "type": "string",
+            "title": "Bildetekst"
+          }
+        ],
+        "type": "image"
+      },
+      {
+        "marks": {
+          "annotations": [
+            {
+              "i18nTitleKey": "inputs.portable-text.annotation.link",
+              "options": {
+                "modal": {
+                  "type": "popover"
+                }
+              },
+              "fields": [
+                {
+                  "validation": [
+                    {
+                      "rules": [
+                        {
+                          "flag": "uri",
+                          "constraint": {
+                            "options": {
+                              "scheme": [
+                                "/^http$/",
+                                "/^https$/",
+                                "/^tel$/",
+                                "/^mailto$/"
+                              ],
+                              "allowRelative": true,
+                              "relativeOnly": false,
+                              "allowCredentials": false
+                            }
+                          }
+                        }
+                      ],
+                      "level": "error"
+                    }
+                  ],
+                  "description": "A valid web, email, phone, or relative link.",
+                  "name": "href",
+                  "type": "url",
+                  "title": "Link"
+                }
+              ],
+              "name": "link",
+              "type": "object"
+            }
+          ],
+          "decorators": [
+            {
+              "value": "strong",
+              "title": "Strong"
+            },
+            {
+              "value": "em",
+              "title": "Italic"
+            },
+            {
+              "value": "code",
+              "title": "Code"
+            },
+            {
+              "value": "underline",
+              "title": "Underline"
+            },
+            {
+              "value": "strike-through",
+              "title": "Strike"
+            }
+          ]
+        },
+        "lists": [
+          {
+            "value": "bullet",
+            "title": "Bulleted list"
+          },
+          {
+            "value": "number",
+            "title": "Numbered list"
+          }
+        ],
+        "styles": [
+          {
+            "value": "normal",
+            "title": "Normal"
+          },
+          {
+            "value": "h1",
+            "title": "Heading 1"
+          },
+          {
+            "value": "h2",
+            "title": "Heading 2"
+          },
+          {
+            "value": "h3",
+            "title": "Heading 3"
+          },
+          {
+            "value": "h4",
+            "title": "Heading 4"
+          },
+          {
+            "value": "h5",
+            "title": "Heading 5"
+          },
+          {
+            "value": "h6",
+            "title": "Heading 6"
+          },
+          {
+            "value": "blockquote",
+            "title": "Quote"
+          }
+        ],
+        "of": [],
+        "type": "block"
+      },
+      {
+        "fields": [
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Plantetips",
+                  "value": "plant"
+                },
+                {
+                  "title": "Verktøytips",
+                  "value": "tool"
+                },
+                {
+                  "title": "Husk",
+                  "value": "remember"
+                },
+                {
+                  "title": "NB!",
+                  "value": "warning"
+                }
+              ],
+              "layout": "radio"
+            },
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "valid",
+                    "constraint": [
+                      "plant",
+                      "tool",
+                      "remember",
+                      "warning"
+                    ]
+                  },
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "variant",
+            "type": "string",
+            "title": "Type tips"
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "title": "Tittel"
+          },
+          {
+            "of": [
+              {
+                "marks": {
+                  "annotations": [
+                    {
+                      "fields": [
+                        {
+                          "validation": [
+                            {
+                              "rules": [
+                                {
+                                  "flag": "uri",
+                                  "constraint": {
+                                    "options": {
+                                      "scheme": [
+                                        "/^http$/",
+                                        "/^https$/"
+                                      ],
+                                      "allowRelative": false,
+                                      "relativeOnly": false,
+                                      "allowCredentials": false
+                                    }
+                                  }
+                                }
+                              ],
+                              "level": "error"
+                            }
+                          ],
+                          "name": "href",
+                          "type": "url",
+                          "title": "URL"
+                        }
+                      ],
+                      "name": "link",
+                      "type": "object",
+                      "title": "Lenke"
+                    },
+                    {
+                      "fields": [
+                        {
+                          "to": [
+                            {
+                              "type": "post"
+                            },
+                            {
+                              "type": "plant"
+                            },
+                            {
+                              "type": "category"
+                            }
+                          ],
+                          "name": "reference",
+                          "type": "reference"
+                        }
+                      ],
+                      "name": "internalLink",
+                      "type": "object",
+                      "title": "Intern lenke"
+                    }
+                  ],
+                  "decorators": [
+                    {
+                      "value": "strong",
+                      "title": "Strong"
+                    },
+                    {
+                      "value": "em",
+                      "title": "Italic"
+                    },
+                    {
+                      "value": "code",
+                      "title": "Code"
+                    },
+                    {
+                      "value": "underline",
+                      "title": "Underline"
+                    },
+                    {
+                      "value": "strike-through",
+                      "title": "Strike"
+                    }
+                  ]
+                },
+                "lists": [
+                  {
+                    "value": "bullet",
+                    "title": "Bulleted list"
+                  },
+                  {
+                    "value": "number",
+                    "title": "Numbered list"
+                  }
+                ],
+                "styles": [
+                  {
+                    "value": "normal",
+                    "title": "Normal"
+                  },
+                  {
+                    "value": "h1",
+                    "title": "Heading 1"
+                  },
+                  {
+                    "value": "h2",
+                    "title": "Heading 2"
+                  },
+                  {
+                    "value": "h3",
+                    "title": "Heading 3"
+                  },
+                  {
+                    "value": "h4",
+                    "title": "Heading 4"
+                  },
+                  {
+                    "value": "h5",
+                    "title": "Heading 5"
+                  },
+                  {
+                    "value": "h6",
+                    "title": "Heading 6"
+                  },
+                  {
+                    "value": "blockquote",
+                    "title": "Quote"
+                  }
+                ],
+                "of": [],
+                "type": "block"
+              }
+            ],
+            "name": "tip",
+            "type": "array",
+            "title": "Tips"
+          }
+        ],
+        "type": "object",
+        "name": "tipBlock",
+        "title": "Tips-blokk"
+      },
+      {
+        "fields": [
+          {
+            "to": [
+              {
+                "type": "guide"
+              }
+            ],
+            "name": "guide",
+            "type": "reference"
+          },
+          {
+            "initialValue": false,
+            "description": "Huk av hvis du vil vise guidens beskrivelse under tittelen.",
+            "name": "showDescription",
+            "type": "boolean",
+            "title": "Vis beskrivelse"
+          },
+          {
+            "options": {
+              "list": [
+                {
+                  "title": "Kort",
+                  "value": "short"
+                },
+                {
+                  "title": "Full",
+                  "value": "full"
+                },
+                {
+                  "title": "Lukket (ekspanderbar)",
+                  "value": "collapsed"
+                }
+              ],
+              "layout": "radio"
+            },
+            "initialValue": "short",
+            "name": "displayMode",
+            "type": "string",
+            "title": "Visningsmodus"
+          }
+        ],
+        "type": "object",
+        "name": "relatedGuide",
+        "title": "Relatert steg-for-steg-guide"
+      },
+      {
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "to": [
+              {
+                "type": "post"
+              }
+            ],
+            "name": "post",
+            "type": "reference",
+            "title": "Innlegg"
+          }
+        ],
+        "type": "object",
+        "name": "relatedPost",
+        "title": "Relatert blogginnlegg"
+      },
+      {
+        "fields": [
+          {
+            "name": "title",
+            "type": "string",
+            "title": "Tittel på guiden"
+          },
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "min",
+                    "constraint": 1
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "of": [
+              {
+                "fields": [
+                  {
+                    "name": "title",
+                    "type": "string",
+                    "title": "Tittel"
+                  },
+                  {
+                    "rows": 3,
+                    "name": "text",
+                    "type": "text",
+                    "title": "Beskrivelse"
+                  },
+                  {
+                    "options": {
+                      "hotspot": true
+                    },
+                    "fields": [
+                      {
+                        "validation": [
+                          {
+                            "rules": [
+                              {
+                                "flag": "presence",
+                                "constraint": "required"
+                              }
+                            ],
+                            "level": "error"
+                          }
+                        ],
+                        "name": "alt",
+                        "type": "string",
+                        "title": "Alt-tekst"
+                      },
+                      {
+                        "name": "caption",
+                        "type": "string",
+                        "title": "Bildetekst"
+                      }
+                    ],
+                    "name": "image",
+                    "type": "image",
+                    "title": "Bilde (valgfritt)"
+                  }
+                ],
+                "type": "object",
+                "name": "step",
+                "title": "Steg"
+              }
+            ],
+            "name": "steps",
+            "type": "array",
+            "title": "Steg"
+          }
+        ],
+        "type": "object",
+        "name": "stepGuide",
+        "title": "Unikt steg-for-steg-guide"
+      }
+    ],
+    "name": "blockContent",
+    "type": "array",
+    "title": "Riktekst"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Tittel"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 3,
+        "name": "description",
+        "type": "text",
+        "title": "Beskrivelse"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "description": "Beskriv bildet for universell utforming og SEO",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt-tekst"
+          },
+          {
+            "name": "caption",
+            "type": "string",
+            "title": "Bildetittel"
+          },
+          {
+            "rows": 2,
+            "name": "description",
+            "type": "text",
+            "title": "Bildetekst / Beskrivelse"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Bilde"
+      }
+    ],
+    "name": "category",
+    "type": "document",
+    "title": "Kategori"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Tittel"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "to": [
+              {
+                "type": "plant"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to plante"
+          }
+        ],
+        "name": "plants",
+        "type": "array",
+        "title": "Planter"
+      },
+      {
+        "rows": 3,
+        "name": "description",
+        "type": "text",
+        "title": "Beskrivelse"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string",
+                "title": "Tittel"
+              },
+              {
+                "rows": 3,
+                "name": "text",
+                "type": "text",
+                "title": "Beskrivelse"
+              }
+            ],
+            "type": "object",
+            "name": "step"
+          }
+        ],
+        "name": "steps",
+        "type": "array",
+        "title": "Steg"
+      }
+    ],
+    "name": "guide",
+    "type": "document",
+    "title": "Steg-for-steg guide"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Tittel"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Om oss",
+              "value": "about"
+            },
+            {
+              "title": "Kontakt",
+              "value": "contact"
+            },
+            {
+              "title": "Annen",
+              "value": "other"
+            }
+          ]
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "about",
+                  "contact",
+                  "other"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "pageType",
+        "type": "string",
+        "title": "Type side"
+      },
+      {
+        "name": "menuOrder",
+        "type": "number",
+        "title": "Menyvekting"
+      },
+      {
+        "description": "Fleksibelt innhold som kan bestå av tekst, bilder, guider osv.",
+        "name": "content",
+        "type": "blockContent",
+        "title": "Innhold"
+      },
+      {
+        "hidden": "conditional",
+        "name": "contactEmail",
+        "type": "string",
+        "title": "E-postadresse (for kontakt)"
+      },
+      {
+        "hidden": "conditional",
+        "name": "contactPhone",
+        "type": "string",
+        "title": "Telefonnummer"
+      }
+    ],
+    "name": "page",
+    "type": "document",
+    "title": "Side"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Navn (norsk)"
+      },
+      {
+        "name": "latinName",
+        "type": "string",
+        "title": "Latinsk navn"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "rows": 3,
+        "name": "description",
+        "type": "text",
+        "title": "Beskrivelse"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "alt",
+            "type": "string",
+            "title": "Alt-tekst"
+          },
+          {
+            "name": "caption",
+            "type": "string",
+            "title": "Bildetittel"
+          },
+          {
+            "rows": 2,
+            "name": "description",
+            "type": "text",
+            "title": "Bildetekst / Beskrivelse"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Bilde"
+      },
+      {
+        "options": {
+          "list": [
+            "Sone 1",
+            "Sone 2",
+            "Sone 3",
+            "Sone 4",
+            "Sone 5",
+            "Sone 6",
+            "Sone 7"
+          ],
+          "layout": "dropdown"
+        },
+        "name": "hardiness",
+        "type": "string",
+        "title": "Hardførhet"
+      },
+      {
+        "name": "seasonSpring",
+        "type": "boolean",
+        "title": "Vår",
+        "fieldset": "seasonFieldset"
+      },
+      {
+        "name": "seasonSummer",
+        "type": "boolean",
+        "title": "Sommer",
+        "fieldset": "seasonFieldset"
+      },
+      {
+        "name": "seasonAutumn",
+        "type": "boolean",
+        "title": "Høst",
+        "fieldset": "seasonFieldset"
+      },
+      {
+        "name": "seasonWinter",
+        "type": "boolean",
+        "title": "Vinter",
+        "fieldset": "seasonFieldset"
+      },
+      {
+        "options": {
+          "list": [
+            "Ettårig",
+            "Flerårig",
+            "Toårig"
+          ],
+          "layout": "dropdown"
+        },
+        "name": "duration",
+        "type": "string",
+        "title": "Varighet"
+      },
+      {
+        "name": "flowering",
+        "type": "string",
+        "title": "Blomstring"
+      },
+      {
+        "description": "Er planten allergivennlig? Huk av for Ja.",
+        "name": "allergyFriendly",
+        "type": "boolean",
+        "title": "Allergivennlig"
+      },
+      {
+        "options": {
+          "list": [
+            "Full sol",
+            "Halvskygge",
+            "Skygge"
+          ],
+          "layout": "dropdown"
+        },
+        "name": "location",
+        "type": "string",
+        "title": "Plassering"
+      },
+      {
+        "options": {
+          "list": [
+            "Lett sandjord",
+            "Lett leirjord",
+            "Middels",
+            "Tung leirjord"
+          ],
+          "layout": "dropdown"
+        },
+        "name": "soilType",
+        "type": "string",
+        "title": "Jordtype"
+      }
+    ],
+    "fieldsets": [
+      {
+        "name": "seasonFieldset",
+        "title": "Sesong",
+        "options": {
+          "collapsible": true,
+          "collapsed": false
+        }
+      }
+    ],
+    "name": "plant",
+    "type": "document",
+    "title": "Plante"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "title",
+        "type": "string",
+        "title": "Tittel"
+      },
+      {
+        "options": {
+          "source": "title",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  }
+                ],
+                "level": "error"
+              }
+            ],
+            "name": "alt",
+            "type": "string",
+            "title": "Alt-tekst"
+          },
+          {
+            "name": "caption",
+            "type": "string",
+            "title": "Bildetittel"
+          },
+          {
+            "rows": 2,
+            "name": "description",
+            "type": "text",
+            "title": "Bildetekst / Beskrivelse"
+          }
+        ],
+        "name": "mainImage",
+        "type": "image",
+        "title": "Hovedbilde"
+      },
+      {
+        "of": [
+          {
+            "options": {
+              "hotspot": true
+            },
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ],
+                    "level": "error"
+                  }
+                ],
+                "name": "alt",
+                "type": "string",
+                "title": "Alt-tekst"
+              },
+              {
+                "name": "caption",
+                "type": "string",
+                "title": "Bildetittel"
+              },
+              {
+                "rows": 2,
+                "name": "description",
+                "type": "text",
+                "title": "Bildetekst / Beskrivelse"
+              }
+            ],
+            "type": "image"
+          }
+        ],
+        "name": "gallery",
+        "type": "array",
+        "title": "Galleri"
+      },
+      {
+        "validation": [
+          {
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ],
+            "level": "error"
+          }
+        ],
+        "of": [
+          {
+            "to": [
+              {
+                "type": "category"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to kategori"
+          }
+        ],
+        "name": "categories",
+        "type": "array",
+        "title": "Kategorier"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "plant"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to plante"
+          }
+        ],
+        "name": "plants",
+        "type": "array",
+        "title": "Planter"
+      },
+      {
+        "name": "listText",
+        "type": "text",
+        "title": "Listetekst"
+      },
+      {
+        "name": "content",
+        "type": "blockContent",
+        "title": "Innhold"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "post"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to blogginnlegg"
+          }
+        ],
+        "name": "relatedPosts",
+        "type": "array",
+        "title": "Relaterte innlegg (manuelt)"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "guide"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to steg-for-steg guide"
+          }
+        ],
+        "name": "relatedGuides",
+        "type": "array",
+        "title": "Relaterte guider (manuelt)"
+      },
+      {
+        "of": [
+          {
+            "to": [
+              {
+                "type": "plant"
+              }
+            ],
+            "type": "reference",
+            "title": "Reference to plante"
+          }
+        ],
+        "name": "relatedPlants",
+        "type": "array",
+        "title": "Relaterte planter (manuelt)"
+      }
+    ],
+    "name": "post",
+    "type": "document",
+    "title": "Blogginnlegg"
+  }
+]

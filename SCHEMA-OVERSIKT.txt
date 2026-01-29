@@ -1,0 +1,280 @@
+================================================================================
+                        SANITY SCHEMA OVERSIKT
+                          Martines Hage
+================================================================================
+
+Denne filen gir en oversikt over alle dokumenttyper og deres felter.
+Oppdatert: Januar 2026
+
+================================================================================
+INNHOLDSTYPER (Dokumenter)
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+POST (Blogginnlegg)
+────────────────────────────────────────────────────────────────────────────────
+Fil: sanity/schemaTypes/post.ts
+URL: /blogg/{slug}
+
+FELTER:
+  title*            string        Tittel
+  slug*             slug          URL-vennlig identifikator
+  mainImage         image         Hovedbilde
+    ├─ alt*         string        Alt-tekst
+    ├─ caption      string        Bildetittel
+    └─ description  text          Bildetekst/Beskrivelse
+  gallery           image[]       Bildegalleri (samme underfelter som mainImage)
+  categories*       reference[]   Kategorier (min. 1 påkrevd) → category
+  plantTypes        reference[]   Plantetyper → plantType
+  plants            reference[]   Planter/sorter → plant
+  listText          text          Kort tekst for lister
+  content           blockContent  Hovedinnhold (rik tekst)
+  relatedPosts      reference[]   Relaterte innlegg → post
+  relatedGuides     reference[]   Relaterte guider → guide
+  relatedPlants     reference[]   Relaterte planter → plant
+
+────────────────────────────────────────────────────────────────────────────────
+GUIDE (Steg-for-steg guide)
+────────────────────────────────────────────────────────────────────────────────
+Fil: sanity/schemaTypes/stepGuide.ts
+URL: /guider/{slug}
+
+FELTER:
+  title*            string        Tittel
+  slug*             slug          URL-vennlig identifikator
+  plantTypes        reference[]   Plantetyper → plantType
+  plants            reference[]   Planter/sorter → plant
+  plantCategories   reference[]   Plantekategorier → plantCategory
+  categories        reference[]   Kategorier → category
+  description       text          Beskrivelse
+  image             image         Hovedbilde
+    ├─ alt          string        Alt-tekst
+    └─ caption      string        Bildetekst
+  steps             step[]        Steg i guiden
+    ├─ title        string        Stegtittel
+    ├─ content      block[]       Innhold (tekst + bilder)
+    └─ image        image         Hovedbilde for steget
+
+────────────────────────────────────────────────────────────────────────────────
+PAGE (Statiske sider)
+────────────────────────────────────────────────────────────────────────────────
+Fil: sanity/schemaTypes/page.ts
+URL: /{slug} (om, kontakt, osv.)
+
+FELTER:
+  title*            string        Tittel
+  slug*             slug          URL-vennlig identifikator
+  pageType*         string        Type: "about" | "contact" | "other"
+  menuOrder         number        Rekkefølge i meny
+  content           blockContent  Hovedinnhold
+  contactEmail      string        E-post (kun for contact-type)
+  contactPhone      string        Telefon (kun for contact-type)
+
+────────────────────────────────────────────────────────────────────────────────
+CATEGORY (Bloggkategorier)
+────────────────────────────────────────────────────────────────────────────────
+Fil: sanity/schemaTypes/category.ts
+URL: /kategorier/{slug}
+
+FELTER:
+  title*            string        Tittel
+  slug*             slug          URL-vennlig identifikator
+  description       text          Beskrivelse
+  image             image         Bilde
+    ├─ alt*         string        Alt-tekst
+    ├─ caption      string        Bildetittel
+    └─ description  text          Bildetekst
+
+
+================================================================================
+PLANTEHIERARKI
+================================================================================
+
+  plantCategory (Plantekategori)
+       │
+       └── plantType (Plantetype)
+              │
+              └── plant (Plante/Sort)
+
+Eksempel:
+  Grønnsaker (kategori)
+       └── Tomat (type)
+              ├── San Marzano (sort)
+              └── Cherry (sort)
+
+────────────────────────────────────────────────────────────────────────────────
+PLANT CATEGORY (Plantekategori)
+────────────────────────────────────────────────────────────────────────────────
+Fil: sanity/schemaTypes/plantCategory.ts
+URL: /planter/{slug}
+
+FELTER:
+  title*            string        Tittel (f.eks. "Grønnsaker", "Urter")
+  slug*             slug          URL-vennlig identifikator
+  description       text          Beskrivelse
+  image             image         Bilde
+    └─ alt*         string        Alt-tekst
+
+────────────────────────────────────────────────────────────────────────────────
+PLANT TYPE (Plantetype)
+────────────────────────────────────────────────────────────────────────────────
+Fil: sanity/schemaTypes/plantType.ts
+URL: /planter/{kategori}/{slug}
+
+FELTER:
+  title*            string        Tittel (f.eks. "Tomat", "Gulrot")
+  latinName         string        Latinsk navn
+  slug*             slug          URL-vennlig identifikator
+  plantCategory*    reference     Tilhører kategori → plantCategory
+  description       text          Beskrivelse
+  image             image         Bilde
+    └─ alt*         string        Alt-tekst
+
+────────────────────────────────────────────────────────────────────────────────
+PLANT (Plante/Sort)
+────────────────────────────────────────────────────────────────────────────────
+Fil: sanity/schemaTypes/plant.ts
+URL: /planter/{kategori}/{type}/{slug}
+
+FELTER:
+  title*            string        Navn (f.eks. "San Marzano", "Lavendel")
+  latinName         string        Latinsk navn
+  slug*             slug          URL-vennlig identifikator
+  description       text          Beskrivelse
+  plantType*        reference     Tilhører type → plantType
+  image             image         Bilde
+    ├─ alt*         string        Alt-tekst
+    ├─ caption      string        Bildetittel
+    └─ description  text          Bildetekst
+
+DYRKNINGSINFO:
+  hardiness         string        Hardførhet: Sone 1-7
+  seasons           string[]      Plantesesong: spring, summer, autumn, winter
+  duration          string        Varighet: Ettårig, Flerårig, Toårig
+  flowering         string[]      Blomstringsmåneder: 01-12
+  harvest           string[]      Høstingsmåneder: 01-12
+  allergyFriendly   boolean       Allergivennlig
+  location          string        Plassering: Full sol, Halvskygge, Skygge
+  soilType          string        Jordtype: Lett sandjord, Lett leirjord,
+                                            Middels, Tung leirjord
+
+TEMAER/HØYTIDER:
+  themes            string[]      christmas, easter, advent, constitution-day,
+                                  harvest, halloween
+
+
+================================================================================
+BLOCKCONTENT (Rik tekst-innhold)
+================================================================================
+Fil: sanity/schemaTypes/blockContent.ts
+
+Brukes i: post.content, page.content, guide.steps[].content
+
+STANDARD BLOKKER:
+  block             Vanlig tekst med formatering
+  image             Bilder med alt-tekst og caption
+
+CUSTOM BLOKKER:
+  ┌─────────────────────────────────────────────────────────────────────────────
+  │ tipBlock (Tips-blokk)
+  │ Fremhevet tekstboks for tips og advarsler
+  ├─────────────────────────────────────────────────────────────────────────────
+  │   variant*      string        "plant" | "tool" | "remember" | "warning"
+  │   title         string        Tittel
+  │   tip           block[]       Innhold (rik tekst)
+  └─────────────────────────────────────────────────────────────────────────────
+
+  ┌─────────────────────────────────────────────────────────────────────────────
+  │ relatedGuide (Relatert guide)
+  │ Referanse til en eksisterende guide
+  ├─────────────────────────────────────────────────────────────────────────────
+  │   guide         reference     Referanse → guide
+  │   showDescription boolean     Vis beskrivelse
+  │   displayMode   string        "short" | "full" | "collapsed"
+  └─────────────────────────────────────────────────────────────────────────────
+
+  ┌─────────────────────────────────────────────────────────────────────────────
+  │ relatedPost (Relatert innlegg)
+  │ Referanse til et blogginnlegg
+  ├─────────────────────────────────────────────────────────────────────────────
+  │   post*         reference     Referanse → post
+  └─────────────────────────────────────────────────────────────────────────────
+
+  ┌─────────────────────────────────────────────────────────────────────────────
+  │ stepGuide (Intern steg-for-steg guide)
+  │ Guide som kun lever i blogginnlegget
+  ├─────────────────────────────────────────────────────────────────────────────
+  │   title         string        Tittel på guiden
+  │   steps         step[]        Steg
+  │     ├─ title    string        Stegtittel
+  │     ├─ content  block[]       Innhold (tekst + bilder)
+  │     └─ image    image         Hovedbilde for steget
+  └─────────────────────────────────────────────────────────────────────────────
+
+MARKS (Inline-formatering):
+  strong            Fet tekst
+  em                Kursiv tekst
+  link              Ekstern lenke (href)
+  internalLink      Intern lenke → post, plant, category, guide
+
+
+================================================================================
+RELASJONER MELLOM TYPER
+================================================================================
+
+                    ┌──────────────┐
+                    │     POST     │
+                    │ (Blogginnlegg)│
+                    └──────┬───────┘
+                           │
+         ┌─────────────────┼─────────────────┐
+         │                 │                 │
+         ▼                 ▼                 ▼
+  ┌────────────┐    ┌────────────┐    ┌────────────┐
+  │  CATEGORY  │    │   GUIDE    │    │   PLANT    │
+  │ (Kategori) │    │  (Guide)   │    │  (Plante)  │
+  └────────────┘    └─────┬──────┘    └──────┬─────┘
+                          │                  │
+         ┌────────────────┤                  │
+         │                │                  │
+         ▼                ▼                  ▼
+  ┌────────────┐   ┌────────────┐    ┌────────────┐
+  │ PLANT TYPE │   │   PLANT    │    │ PLANT TYPE │
+  │(Plantetype)│◄──│  CATEGORY  │    │(Plantetype)│
+  └──────┬─────┘   │ (Kategori) │    └──────┬─────┘
+         │         └────────────┘           │
+         ▼                                  ▼
+  ┌────────────┐                    ┌────────────┐
+  │   PLANT    │                    │   PLANT    │
+  │   CATEGORY │                    │  CATEGORY  │
+  │ (Kategori) │                    │ (Kategori) │
+  └────────────┘                    └────────────┘
+
+
+================================================================================
+NOTASJONER
+================================================================================
+
+*   = Påkrevd felt (required)
+[]  = Array/liste
+→   = Referanse til annen type
+
+
+================================================================================
+FRONTEND-RUTER
+================================================================================
+
+/                         Forside
+/blogg                    Bloggliste
+/blogg/{slug}             Blogginnlegg
+/guider                   Guideliste
+/guider/{slug}            Guide
+/kategorier               Kategoriliste
+/kategorier/{slug}        Kategori med innlegg
+/planter                  Plantekategorier
+/planter/{kategori}       Plantetyper i kategori
+/planter/{kategori}/{type}  Planter/sorter
+/om                       Om-side
+/kontakt                  Kontaktside
+/aarshjul                 Årshjul for planting
+

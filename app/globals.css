@@ -1,26 +1,100 @@
 @import "tailwindcss";
 
+/* ==============================================
+   DESIGN TOKENS - Hage & Planting tema
+   Følger CRAP: Contrast, Repetition, Alignment, Proximity
+   ============================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Fargepalett - Naturlige toner */
+  --color-primary: #2d5a3d;        /* Skoggrønn - hovedfarge */
+  --color-primary-light: #4a7c5c;  /* Lysere grønn */
+  --color-primary-dark: #1e3d2a;   /* Mørkere grønn */
+
+  --color-secondary: #8b7355;      /* Jordtone - sekundærfarge */
+  --color-secondary-light: #a99076;
+
+  --color-accent: #d4a853;         /* Solsikke-gul - aksentfarge */
+
+  /* Nøytrale farger */
+  --color-bg: #faf9f7;             /* Varm hvit bakgrunn */
+  --color-bg-alt: #f3f1ed;         /* Alternativ bakgrunn */
+  --color-text: #2c2c2c;           /* Hovedtekst */
+  --color-text-light: #666666;     /* Sekundærtekst */
+  --color-border: #e5e2dc;         /* Kantlinjer */
+
+  /* Spacing - Konsistent (Repetition) */
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 3rem;     /* 48px */
+  --space-3xl: 4rem;     /* 64px */
+
+  /* Typografi - Kontrast mellom nivåer */
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;    /* 18px */
+  --font-size-xl: 1.25rem;     /* 20px */
+  --font-size-2xl: 1.5rem;     /* 24px */
+  --font-size-3xl: 2rem;       /* 32px */
+  --font-size-4xl: 2.5rem;     /* 40px */
+
+  /* Maksbredder - Alignment */
+  --max-width-content: 65ch;    /* Lesbar tekstbredde */
+  --max-width-wide: 1200px;     /* Bred container */
+
+  /* Border radius - Repetition */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-full: 9999px;
 }
 
+/* Tailwind tema-integrasjon */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-primary: var(--color-primary);
+  --color-primary-light: var(--color-primary-light);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base styles */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  line-height: 1.6;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Typografi - Kontrast */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Lenker */
+a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Fokus-stiler for tilgjengelighet */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
