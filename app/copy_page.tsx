@@ -24,13 +24,13 @@ export default async function Home() {
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="/blogg"
-                className="inline-flex items-center rounded-full bg-white px-6 py-3 font-medium text-[var(--color-primary)] no-underline transition-colors hover:bg-[var(--color-accent)]"
+                className="inline-flex items-center rounded-full bg-pink px-6 py-3 font-medium text-[var(--color-primary)] no-underline transition-colors hover:bg-[var(--color-accent)]"
               >
                 Les bloggen
               </Link>
               <Link
                 href="/planter"
-                className="inline-flex items-center rounded-full border-2 border-white px-6 py-3 font-medium text-white no-underline transition-colors hover:bg-white hover:text-[var(--color-primary)]"
+                className="inline-flex items-center color-white rounded-full border-2 border-white px-6 py-3 font-medium text-white no-underline transition-colors hover:bg-white hover:text-[var(--color-primary)]"
               >
                 Utforsk planter
               </Link>

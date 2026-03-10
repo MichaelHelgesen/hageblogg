@@ -54,7 +54,7 @@ export default async function Home() {
               </Link>
               <Link
                 href="/planter"
-                className="inline-flex items-center rounded-full border-2 border-white px-6 py-3 font-medium text-white no-underline transition-colors hover:bg-white hover:text-[var(--color-primary)]"
+                className="inline-flex items-center !text-white rounded-full border-2 border-white px-6 py-3 font-medium text-white no-underline transition-colors hover:bg-white hover:text-[var(--color-primary)]"
               >
                 Utforsk planter
               </Link>
