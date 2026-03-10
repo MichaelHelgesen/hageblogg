@@ -45,7 +45,7 @@ export default async function PlantTypePage({ params }: Props) {
                 </p>
               )}
               <Link
-                href={`/planter/${post.slug?.current}`}
+                href={`/planter/${slug}/${post.slug?.current}`}
                 className="mt-4 inline-block text-sm font-medium"
               >
                 Les mer &rarr;

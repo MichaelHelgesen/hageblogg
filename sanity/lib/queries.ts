@@ -119,6 +119,16 @@ export const CATEGORIES_QUERY = defineQuery(`
 // PLANTER (plants)
 // ============================================
 
+// Hent plante basert på slug
+export const PLANT_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "plant" && slug.current == $plant][0] {
+    _id,
+    title,
+    slug,
+    image
+  }
+`)
+
 // Hent alle planter
 export const PLANTS_QUERY = defineQuery(`
   *[_type == "plant"] | order(_createdAt desc) {
@@ -131,7 +141,7 @@ export const PLANTS_QUERY = defineQuery(`
 
 // Hent planter basert på slug
 export const PLANTS_BY_SLUG_QUERY = defineQuery(`
-  *[_type == "plant" && plantType->slug.current == $slug] {
+  *[_type == "plant" && plantType->slug.current == $plantType] {
   _id,
   title,
   slug,
@@ -215,6 +225,15 @@ export const PLANT_CATEGORY_QUERY = defineQuery(`
 // Hent alle guider
 export const GUIDES_QUERY = defineQuery(`
   *[_type == "guide"] | order(_createdAt desc) {
+    _id,
+    title,
+    slug,
+  }
+`)
+
+// Hent guide fra slug
+export const GUIDE_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "guide" && slug.current == $slug][0] {
     _id,
     title,
     slug,
