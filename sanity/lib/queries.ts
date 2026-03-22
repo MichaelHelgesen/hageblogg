@@ -133,6 +133,7 @@ export const CATEGORY_QUERY = defineQuery(`
 export const PLANT_BY_SLUG_QUERY = defineQuery(`
   *[_type == "plant" && slug.current == $plant][0] {
     _id,
+    description,
     title,
     slug,
     image
@@ -173,6 +174,7 @@ export const PLANT_TYPES_QUERY = defineQuery(`
     slug,                                         
     description,                                  
     image,                                        
+    "categoryTitle": plantCategory->title,
     "plantCount": count(*[_type == "plant" &&     
   plantType._ref == ^._id])                       
   }                                               
@@ -183,6 +185,7 @@ export const PLANT_TYPE_BY_SLUG_QUERY = defineQuery(`
   *[_type == "plantType" && plantCategory->slug.current == $slug][0] {
   _id,
   title,
+  description,
   slug,
   mainImage,
   "categoryTitle": plantCategory->title
