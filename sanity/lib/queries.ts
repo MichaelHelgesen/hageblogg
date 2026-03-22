@@ -115,6 +115,16 @@ export const CATEGORIES_QUERY = defineQuery(`
   }
 `)
 
+// Hent kategori basert på slug
+export const CATEGORY_QUERY = defineQuery(`
+  *[_type == "category" && slug.current == $slug][0] {
+    _id,
+    title,
+    slug,
+    image
+  }
+`)
+
 // ============================================
 // PLANTER (plants)
 // ============================================

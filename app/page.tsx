@@ -83,8 +83,8 @@ export default async function Home() {
           <p className="mt-2 text-[var(--color-text-light)]">
             Bli kjent med en ny plante.
           </p>
-{plants.slice(1, 2).map((plant) => (
-	<div className="mt-8 overflow-hidden rounded-xl bg-white shadow-sm">
+{plants.slice(1, 2).map((plant, index) => (
+	<div key={index} className="mt-8 overflow-hidden rounded-xl bg-white shadow-sm">
             <div className="grid md:grid-cols-2">
               {/* Placeholder for bilde */}
               {plant.image ? (

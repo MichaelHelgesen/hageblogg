@@ -5,7 +5,6 @@ import Image from "next/image";
 
 
 export async function BlogList({posts}) {
-  console.log("POSTS", posts)
   return (
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {posts.slice(0, 6).map((post) => (

@@ -34,12 +34,14 @@ console.log("POST", a_plant)
         {plants && (
           <div className="mt-4 text-lg text-[var(--color-text-light)]">
             {/* TODO: Render blockContent */}
+            <p>Dette er side</p>
           </div>
         )}
 
         {/* Liste over blogginnlegg */}
+        <h2>Andre typer {plantType}</h2>
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {plants.sort((a,b) => a.title.localeCompare(b.title, "nb")).map((post) => (
+          {plants.filter((plant => plant.title != a_plant.title)).sort((a,b) => a.title.localeCompare(b.title, "nb")).map((post) => (
             <article
               key={post._id}
               className="rounded-lg border border-[var(--color-border)] bg-white p-6 transition-shadow hover:shadow-md"
@@ -62,6 +64,7 @@ console.log("POST", a_plant)
             </article>
           ))}
         </div>
+
       </Container>
     </section>
   );
