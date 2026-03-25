@@ -108,6 +108,7 @@ export const POST_BY_SLUG_QUERY = defineQuery(`
 export const CATEGORIES_QUERY = defineQuery(`
   *[_type == "category" && count(*[_type == "post" && ^._id in categories[]._ref]) > 0] | order(_createdAt desc) {
     _id,
+    image,
     title,
     slug,
     "postCount": count(*[_type == "post" && ^._id 
